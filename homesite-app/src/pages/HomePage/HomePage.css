@@ -1,0 +1,22 @@
+.home-page {
+  min-height: 100vh;
+  background: #003049;
+}
+
+.main-content {
+  padding-top: 14vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 14vh);
+}
+
+.link-cards-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-left: 10%;
+  margin-top: 2%;
+  justify-content: flex-start;
+}
+

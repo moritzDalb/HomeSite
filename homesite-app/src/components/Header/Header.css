@@ -1,0 +1,30 @@
+.header {
+  background: #fcbf49;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 12vh;
+  border-style: solid;
+  border-color: #002234;
+  border-width: 0 0 2px 0;
+  display: flex;
+  align-items: center;
+  padding: 0 3vw;
+  z-index: 100;
+}
+
+.header-title {
+  margin: 0;
+}
+
+.header-title a {
+  font-size: 5vh;
+  color: #003049;
+  text-decoration: none;
+}
+
+.header-title a:hover {
+  opacity: 0.8;
+}
+

@@ -1,0 +1,70 @@
+.link-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20vw;
+  height: 33vh;
+  background-color: #eae2b7;
+  border-radius: 2em;
+  margin-right: 10%;
+  margin-bottom: 5%;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.link-card.hovered {
+  box-shadow: 6px 6px #002234;
+  border-style: outset;
+  border-color: #003049;
+  border-width: 5px;
+}
+
+.card-label {
+  font-size: 240%;
+  color: #d62828;
+  margin: 0;
+  transition: opacity 0.2s ease;
+}
+
+.card-label.hidden {
+  display: none;
+}
+
+.dropdown-content {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  min-width: 160px;
+  z-index: 1;
+}
+
+.dropdown-content.visible {
+  display: flex;
+}
+
+.border-first a,
+.border a {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 13vw;
+  padding-top: 2vh;
+  padding-bottom: 2vh;
+  font-size: 2.5vh;
+  color: #d62828;
+  text-decoration: none;
+}
+
+.border a {
+  border-style: dashed;
+  border-left: none;
+  border-right: none;
+  border-bottom: none;
+  border-color: #d62828;
+}
+
+.border:hover a,
+.border-first:hover a {
+  font-weight: bold;
+}
+
