@@ -1,8 +1,11 @@
 .home-page {
-  min-height: 100vh;
-  background: linear-gradient(-45deg, #003049, #002234, #003049, #001a2e);
+  height: 100vh;
+  overflow: hidden;
+  background: var(--bg-gradient, linear-gradient(-45deg, #003049, #002234, #003049, #001a2e));
   background-size: 400% 400%;
   animation: gradientShift 15s ease infinite;
+  display: flex;
+  flex-direction: column;
 }
 
 @keyframes gradientShift {
@@ -18,19 +21,36 @@
 }
 
 .main-content {
-  padding-top: 14vh;
+  flex: 1;
+  padding-top: 90px;
+  padding-bottom: 20px;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  min-height: calc(100vh - 14vh);
+  justify-content: center;
+  overflow: hidden;
 }
 
 .link-cards-container {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  margin-left: 10%;
-  margin-top: 2%;
-  justify-content: flex-start;
+  justify-content: center;
+  align-content: center;
+  gap: 24px;
+  max-width: 1200px;
+  padding: 0 20px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .main-content {
+    padding-top: 70px;
+  }
+
+  .link-cards-container {
+    gap: 16px;
+    padding: 0 12px;
+  }
 }
 

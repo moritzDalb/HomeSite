@@ -1,3 +1,36 @@
+:root {
+  /* Dark Theme (default) */
+  --bg-primary: #003049;
+  --bg-secondary: #002234;
+  --text-primary: #eae2b7;
+  --text-secondary: #a8a8a8;
+  --card-bg: #eae2b7;
+  --card-text: #003049;
+  --header-bg: #fcbf49;
+  --accent: #fcbf49;
+  --accent-secondary: #d62828;
+  --border-color: #002234;
+  --nav-text: #003049;
+  --nav-text-hover: #002234;
+  --bg-gradient: linear-gradient(-45deg, #003049, #002234, #003049, #001a2e);
+}
+
+[data-theme="light"] {
+  --bg-primary: #f8f9fa;
+  --bg-secondary: #e9ecef;
+  --text-primary: #003049;
+  --text-secondary: #495057;
+  --card-bg: #ffffff;
+  --card-text: #003049;
+  --header-bg: #fcbf49;
+  --accent: #fcbf49;
+  --accent-secondary: #d62828;
+  --border-color: #dee2e6;
+  --nav-text: #003049;
+  --nav-text-hover: #002234;
+  --bg-gradient: linear-gradient(-45deg, #f8f9fa, #e9ecef, #f8f9fa, #dee2e6);
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -9,14 +42,17 @@ html {
   scroll-behavior: smooth;
 }
 
-body {
+html, body {
   margin: 0;
   min-width: 320px;
-  min-height: 100vh;
-  background: #003049;
-  overflow-x: hidden;
+  height: 100vh;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  overflow: hidden;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
 #root {
-  min-height: 100vh;
+  height: 100vh;
+  overflow: hidden;
 }
