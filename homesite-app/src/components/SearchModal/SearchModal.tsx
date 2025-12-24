@@ -48,12 +48,16 @@ const SearchModal = ({ isOpen, onClose }: SearchModalProps) => {
       inputRef.current.focus();
     }
     if (!isOpen) {
+      // Reset state when modal closes - intentional synchronization
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setQuery('');
       setSelectedIndex(0);
     }
   }, [isOpen]);
 
   useEffect(() => {
+    // Reset selection when query changes - intentional synchronization
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setSelectedIndex(0);
   }, [query]);
 
