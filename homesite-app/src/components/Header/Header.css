@@ -12,19 +12,44 @@
   align-items: center;
   padding: 0 3vw;
   z-index: 100;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(10px);
 }
 
 .header-title {
-  margin: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin: 0;
 }
 
 .header-title a {
   font-size: 5vh;
   color: #003049;
   text-decoration: none;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.header-title a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 3px;
+  bottom: -5px;
+  left: 50%;
+  background-color: #003049;
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
 }
 
 .header-title a:hover {
-  opacity: 0.8;
+  transform: translateY(-2px);
+  color: #002234;
+}
+
+.header-title a:hover::after {
+  width: 100%;
 }
 

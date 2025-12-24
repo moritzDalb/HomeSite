@@ -1,6 +1,20 @@
 .home-page {
   min-height: 100vh;
-  background: #003049;
+  background: linear-gradient(-45deg, #003049, #002234, #003049, #001a2e);
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0 50%;
+  }
 }
 
 .main-content {

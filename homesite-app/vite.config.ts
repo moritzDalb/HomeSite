@@ -2,7 +2,7 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
 // https://vite.dev/config/
-export default defineConfig({
+export default defineConfig(({ command }) => ({
   plugins: [
     react({
       babel: {
@@ -10,8 +10,9 @@ export default defineConfig({
       },
     }),
   ],
-  base: '/homesite/',  // Basis-Pfad für Tomcat-Deployment
+  // Basis-Pfad nur für Production-Build (Tomcat-Deployment)
+  base: command === 'build' ? '/homesite/' : '/',
   build: {
     outDir: 'dist',
   },
-})
+}))
