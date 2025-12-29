@@ -1,7 +1,7 @@
 .home-page {
     height: 100vh;
     overflow: hidden;
-    background: var(--bg-gradient, linear-gradient(-45deg, #003049, #002234, #003049, #001a2e));
+    background: var(--bg-gradient);
     background-size: 400% 400%;
     animation: gradientShift 15s ease infinite;
     display: flex;
@@ -23,7 +23,7 @@
 .main-content {
     flex: 1;
     padding-top: 90px;
-    padding-bottom: 20px;
+    padding-bottom: var(--spacing-xl);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -37,9 +37,9 @@
     flex-wrap: wrap;
     justify-content: center;
     align-content: center;
-    gap: 24px;
+    gap: var(--spacing-2xl);
     max-width: 1200px;
-    padding: 0 20px;
+    padding: 0 var(--spacing-xl);
 }
 
 /* Responsive */
@@ -49,7 +49,7 @@
     }
 
     .link-cards-container {
-        gap: 16px;
-        padding: 0 12px;
+        gap: var(--spacing-lg);
+        padding: 0 var(--spacing-md);
     }
 }

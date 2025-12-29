@@ -1,18 +1,18 @@
 .header {
-    background: var(--header-bg, #fcbf49);
+    background: var(--header-bg);
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     height: 70px;
     border-style: solid;
-    border-color: var(--border-color, #002234);
+    border-color: var(--border-color);
     border-width: 0 0 2px 0;
     display: flex;
     align-items: center;
-    padding: 0 24px;
-    z-index: 100;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    padding: 0 var(--spacing-2xl);
+    z-index: var(--z-fixed);
+    box-shadow: var(--shadow-lg);
     backdrop-filter: blur(10px);
 }
 
@@ -25,17 +25,17 @@
 
 .nav-links {
     display: flex;
-    gap: 24px;
+    gap: var(--spacing-2xl);
 }
 
 .nav-link {
-    font-size: 1.2rem;
-    font-weight: 600;
-    color: var(--nav-text, #003049);
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    color: var(--nav-text);
     text-decoration: none;
-    transition: all 0.3s ease;
+    transition: all var(--transition-slow);
     position: relative;
-    padding: 8px 0;
+    padding: var(--spacing-sm) 0;
 }
 
 .nav-link::after {
@@ -45,15 +45,15 @@
     height: 3px;
     bottom: 0;
     left: 50%;
-    background-color: var(--nav-text, #003049);
-    transition: all 0.3s ease;
+    background-color: var(--nav-text);
+    transition: all var(--transition-slow);
     transform: translateX(-50%);
     border-radius: 2px;
 }
 
 .nav-link:hover {
     transform: translateY(-2px);
-    color: var(--nav-text-hover, #002234);
+    color: var(--nav-text-hover);
 }
 
 .nav-link:hover::after {
@@ -64,23 +64,23 @@
 .header-center {
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: var(--spacing-lg);
 }
 
 .mini-stats {
     display: flex;
-    gap: 16px;
+    gap: var(--spacing-lg);
 }
 
 .mini-stat {
     display: flex;
     align-items: center;
-    gap: 6px;
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: var(--nav-text, #003049);
-    opacity: 0.8;
-    transition: opacity 0.2s ease;
+    gap: var(--spacing-md);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-semibold);
+    color: var(--nav-text);
+    opacity: var(--opacity-strong);
+    transition: opacity var(--transition-normal);
 }
 
 .mini-stat:hover {
@@ -88,42 +88,42 @@
 }
 
 .mini-stat svg {
-    opacity: 0.7;
+    opacity: var(--opacity-medium);
 }
 
 /* Header Actions */
 .header-actions {
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: var(--spacing-lg);
 }
 
 .search-button {
     display: flex;
     align-items: center;
-    gap: 8px;
-    padding: 8px 14px;
-    background: rgba(0, 48, 73, 0.1);
-    border: 1px solid rgba(0, 48, 73, 0.2);
-    border-radius: 10px;
-    color: var(--nav-text, #003049);
-    font-size: 0.9rem;
-    font-weight: 500;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm) 14px;
+    background: var(--button-bg);
+    border: 1px solid var(--border-accent);
+    border-radius: var(--radius-lg);
+    color: var(--nav-text);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-medium);
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all var(--transition-normal);
 }
 
 .search-button:hover {
-    background: rgba(0, 48, 73, 0.15);
-    border-color: rgba(0, 48, 73, 0.3);
+    background: var(--button-bg-hover);
+    border-color: var(--button-border-hover);
     transform: translateY(-1px);
 }
 
 .search-button kbd {
-    background: rgba(0, 48, 73, 0.15);
-    padding: 2px 6px;
-    border-radius: 4px;
-    font-size: 0.75rem;
+    background: var(--button-bg-hover);
+    padding: var(--spacing-2xs) var(--spacing-md);
+    border-radius: var(--radius-sm);
+    font-size: var(--font-size-xs);
     font-family: inherit;
 }
 
@@ -145,22 +145,22 @@
 @media (max-width: 768px) {
     .header {
         height: 60px;
-        padding: 0 16px;
+        padding: 0 var(--spacing-lg);
     }
 
     .nav-links {
-        gap: 16px;
+        gap: var(--spacing-lg);
     }
 
     .nav-link {
-        font-size: 1rem;
+        font-size: var(--font-size-md);
     }
 
     .header-actions {
-        gap: 12px;
+        gap: var(--spacing-md);
     }
 
     .search-button {
-        padding: 8px;
+        padding: var(--spacing-sm);
     }
 }

@@ -1,0 +1,302 @@
+/**
+ * Design Tokens
+ *
+ * Zentralisierte Design-Variablen für konsistentes Styling.
+ * Struktur: Primitive Tokens → Semantic Tokens
+ */
+
+:root {
+    /* ========================================
+       PRIMITIVE TOKENS - Basis-Farbpalette
+       ======================================== */
+
+    /* Blues - Primary Brand Colors */
+    --color-blue-900: #001a2e;
+    --color-blue-800: #002234;
+    --color-blue-700: #003049;
+    --color-blue-600: #1a5f7a;
+    --color-blue-500: #2a7d8f;
+    --color-blue-400: #4a9d8f;
+
+    /* Yellows/Golds - Accent Colors */
+    --color-yellow-500: #ffd166;
+    --color-yellow-400: #fcbf49;
+    --color-yellow-300: #fdd77a;
+
+    /* Reds - Secondary Accent */
+    --color-red-600: #d62828;
+    --color-red-500: #e63946;
+    --color-orange-500: #f77f00;
+
+    /* Neutrals - Beige/Cream tones */
+    --color-cream-100: #ffffff;
+    --color-cream-200: #f5f1e8;
+    --color-cream-300: #ebe5d9;
+    --color-cream-400: #e3dccf;
+    --color-cream-500: #eae2b7;
+    --color-cream-600: #d4c9b8;
+    --color-cream-700: #b8976f;
+
+    /* Grays */
+    --color-gray-100: #f8f9fa;
+    --color-gray-200: #e9ecef;
+    --color-gray-400: #a8a8a8;
+    --color-gray-500: #999999;
+    --color-gray-600: #495057;
+    --color-gray-700: #888888;
+    --color-gray-900: #1a1a1a;
+
+    /* Logo Accent Colors (Vite template) */
+    --color-logo-vite: #646cffaa;
+    --color-logo-react: #61dafbaa;
+
+    /* Teals/Cyans - For accents/icons */
+    --color-teal-300: #a8dadc;
+    --color-teal-500: #2a9d8f;
+    --color-sky-300: #87ceeb;
+    --color-sky-400: #5eb5e0;
+
+    /* Browns - Warm tones */
+    --color-brown-400: #d4a574;
+
+    /* ========================================
+       SPACING TOKENS
+       ======================================== */
+    --spacing-2xs: 2px;
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 12px;
+    --spacing-lg: 16px;
+    --spacing-xl: 20px;
+    --spacing-2xl: 24px;
+    --spacing-3xl: 28px;
+    --spacing-4xl: 32px;
+    --spacing-5xl: 40px;
+    --spacing-6xl: 48px;
+
+    /* ========================================
+       BORDER RADIUS TOKENS
+       ======================================== */
+    --radius-sm: 4px;
+    --radius-md: 6px;
+    --radius-lg: 10px;
+    --radius-xl: 12px;
+    --radius-2xl: 16px;
+    --radius-3xl: 20px;
+    --radius-full: 50%;
+
+    /* ========================================
+       TYPOGRAPHY TOKENS
+       ======================================== */
+    --font-size-xs: 0.75rem;
+    --font-size-sm: 0.8rem;
+    --font-size-base: 0.9rem;
+    --font-size-md: 1rem;
+    --font-size-lg: 1.2rem;
+    --font-size-xl: 1.4rem;
+    --font-size-2xl: 1.5rem;
+    --font-size-3xl: 1.8rem;
+    --font-size-4xl: 2rem;
+
+    --font-weight-light: 300;
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+
+    /* ========================================
+       SHADOW TOKENS
+       ======================================== */
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 4px 12px rgba(0, 0, 0, 0.15);
+    --shadow-xl: 0 12px 24px rgba(0, 34, 52, 0.3);
+    --shadow-2xl: 0 20px 60px rgba(0, 0, 0, 0.4);
+    --shadow-inset: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+    --shadow-glow-accent: 0 0 12px rgba(252, 191, 73, 0.4);
+
+    /* ========================================
+       TRANSITION TOKENS
+       ======================================== */
+    --transition-fast: 0.15s ease;
+    --transition-normal: 0.2s ease;
+    --transition-slow: 0.3s ease;
+    --transition-bounce: 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    --transition-smooth: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* ========================================
+       OPACITY TOKENS
+       ======================================== */
+    --opacity-muted: 0.5;
+    --opacity-soft: 0.6;
+    --opacity-medium: 0.7;
+    --opacity-strong: 0.8;
+
+    /* ========================================
+       Z-INDEX TOKENS
+       ======================================== */
+    --z-dropdown: 10;
+    --z-sticky: 50;
+    --z-fixed: 100;
+    --z-modal-backdrop: 900;
+    --z-modal: 1000;
+    --z-tooltip: 1100;
+}
+
+/* ========================================
+   SEMANTIC TOKENS - Dark Theme (default)
+   ======================================== */
+:root {
+    /* Background Colors */
+    --bg-primary: var(--color-blue-700);
+    --bg-secondary: var(--color-blue-800);
+    --bg-gradient: linear-gradient(-45deg,
+        var(--color-blue-700),
+        var(--color-blue-800),
+        var(--color-blue-700),
+        var(--color-blue-900)
+    );
+
+    /* Text Colors */
+    --text-primary: var(--color-cream-500);
+    --text-secondary: var(--color-gray-400);
+    --text-muted: rgba(234, 226, 183, 0.6);
+    --text-inverted: var(--color-blue-700);
+
+    /* Card Colors */
+    --card-bg: var(--color-cream-500);
+    --card-text: var(--color-gray-900);
+
+    /* Header Colors */
+    --header-bg: var(--color-yellow-400);
+    --nav-text: var(--color-blue-700);
+    --nav-text-hover: var(--color-blue-800);
+
+    /* Accent Colors */
+    --accent: var(--color-yellow-400);
+    --accent-secondary: var(--color-red-600);
+    --accent-hover: var(--color-yellow-500);
+
+    /* Border Colors */
+    --border-color: var(--color-blue-500);
+    --border-subtle: rgba(252, 191, 73, 0.2);
+    --border-accent: rgba(252, 191, 73, 0.4);
+
+    /* Interactive State Colors */
+    --hover-bg: rgba(234, 226, 183, 0.1);
+    --hover-bg-strong: rgba(234, 226, 183, 0.15);
+    --active-bg: rgba(252, 191, 73, 0.2);
+    --active-bg-strong: rgba(252, 191, 73, 0.3);
+
+    /* Overlay Colors */
+    --overlay-dark: rgba(0, 0, 0, 0.7);
+    --overlay-light: rgba(0, 0, 0, 0.2);
+
+    /* Card Border Colors */
+    --card-border: transparent;
+    --card-border-hover: var(--color-teal-300);
+
+    /* Glow/Shadow Colors */
+    --glow-teal: rgba(168, 218, 220, 0.3);
+    --glow-teal-soft: rgba(168, 218, 220, 0.15);
+    --glow-teal-inset: rgba(168, 218, 220, 0.25);
+    --shadow-text: rgba(0, 0, 0, 0.1);
+    --shadow-thumb: rgba(0, 0, 0, 0.3);
+    --focus-accent: rgba(252, 191, 73, 0.5);
+
+    /* Input/Button Background Colors */
+    --button-bg: rgba(0, 48, 73, 0.1);
+    --button-bg-hover: rgba(0, 48, 73, 0.15);
+    --button-border-hover: rgba(0, 48, 73, 0.3);
+    --divider-color: rgba(0, 48, 73, 0.1);
+
+    /* Widget Colors */
+    --widget-bg: rgba(234, 226, 183, 0.12);
+    --kbd-text: rgba(234, 226, 183, 0.8);
+
+    /* Icon Colors */
+    --icon-sun: var(--color-yellow-400);
+    --icon-moon: var(--color-teal-300);
+    --icon-coffee: var(--color-brown-400);
+    --icon-sunset: var(--color-orange-500);
+    --icon-muted: var(--color-gray-500);
+
+    /* Icon Glow Colors */
+    --icon-sun-glow: rgba(252, 191, 73, 0.5);
+    --icon-moon-glow: rgba(168, 218, 220, 0.5);
+    --icon-coffee-glow: rgba(212, 165, 116, 0.5);
+    --icon-sunset-glow: rgba(247, 127, 0, 0.5);
+
+    /* Toggle Track Colors (Theme Toggle specific) */
+    --toggle-track-dark: linear-gradient(135deg, var(--color-blue-700) 0%, var(--color-blue-900) 100%);
+    --toggle-track-light: linear-gradient(135deg, var(--color-sky-300) 0%, var(--color-sky-400) 100%);
+}
+
+/* ========================================
+   SEMANTIC TOKENS - Light Theme
+   ======================================== */
+[data-theme='light'] {
+    /* Background Colors */
+    --bg-primary: var(--color-cream-200);
+    --bg-secondary: var(--color-cream-300);
+    --bg-gradient: linear-gradient(-45deg,
+        var(--color-cream-200),
+        var(--color-cream-300),
+        var(--color-cream-200),
+        var(--color-cream-400)
+    );
+
+    /* Text Colors */
+    --text-primary: var(--color-blue-700);
+    --text-secondary: var(--color-gray-600);
+    --text-muted: var(--color-gray-600);
+    --text-inverted: var(--color-cream-100);
+
+    /* Card Colors */
+    --card-bg: var(--color-cream-100);
+    --card-text: var(--color-blue-700);
+
+    /* Header Colors - Same as dark */
+    --header-bg: var(--color-yellow-400);
+    --nav-text: var(--color-blue-700);
+    --nav-text-hover: var(--color-blue-800);
+
+    /* Accent Colors */
+    --accent: var(--color-yellow-400);
+    --accent-secondary: var(--color-red-600);
+    --accent-hover: var(--color-yellow-500);
+
+    /* Border Colors */
+    --border-color: var(--color-cream-600);
+    --border-subtle: rgba(212, 201, 184, 0.5);
+    --border-accent: rgba(0, 48, 73, 0.2);
+
+    /* Interactive State Colors */
+    --hover-bg: rgba(0, 48, 73, 0.05);
+    --hover-bg-strong: rgba(0, 48, 73, 0.1);
+    --active-bg: rgba(252, 191, 73, 0.2);
+    --active-bg-strong: rgba(252, 191, 73, 0.3);
+
+    /* Overlay Colors */
+    --overlay-dark: rgba(0, 0, 0, 0.5);
+    --overlay-light: rgba(0, 0, 0, 0.1);
+
+    /* Card Border Colors */
+    --card-border: transparent;
+    --card-border-hover: var(--color-blue-700);
+
+    /* Glow/Shadow Colors */
+    --glow-teal: rgba(0, 48, 73, 0.2);
+    --glow-teal-soft: rgba(0, 48, 73, 0.1);
+    --glow-teal-inset: rgba(0, 48, 73, 0.15);
+    --shadow-text: rgba(0, 0, 0, 0.05);
+    --shadow-thumb: rgba(0, 0, 0, 0.2);
+    --shadow-widget: rgba(0, 48, 73, 0.08);
+
+    /* Widget Colors */
+    --widget-bg: var(--card-bg);
+
+    /* Time color in light mode */
+    --time-color: var(--color-red-600);
+}
+

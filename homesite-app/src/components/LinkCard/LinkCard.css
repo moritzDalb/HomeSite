@@ -4,15 +4,15 @@
     align-items: center;
     width: 280px;
     height: 280px;
-    background-color: var(--card-bg, #eae2b7);
+    background-color: var(--card-bg);
     border-radius: 1.5em;
     position: relative;
     transition:
-        transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-        box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-        border 0.3s ease;
+        transform var(--transition-smooth),
+        box-shadow var(--transition-smooth),
+        border var(--transition-slow);
     cursor: pointer;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow-md);
     animation: fadeInUp 0.6s ease-out backwards;
     overflow: hidden;
     border: 3px solid transparent;
@@ -50,16 +50,20 @@
 
 .link-card.hovered {
     transform: translateY(-4px);
-    box-shadow: 0 12px 24px rgba(0, 34, 52, 0.3);
-    border-color: #003049;
+    box-shadow:
+        var(--shadow-xl),
+        0 0 30px var(--glow-teal),
+        0 0 60px var(--glow-teal-soft),
+        inset 0 0 20px var(--glow-teal-inset);
+    border-color: var(--card-border-hover);
 }
 
 .card-label {
-    font-size: 2rem;
-    color: #d62828;
+    font-size: var(--font-size-4xl);
+    color: var(--accent-secondary);
     margin: 0;
-    transition: all 0.3s ease;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all var(--transition-slow);
+    text-shadow: 2px 2px 4px var(--shadow-text);
 }
 
 .card-label.hidden {
@@ -78,8 +82,8 @@
     z-index: 1;
     opacity: 0;
     transform: scale(0.95);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    padding: 16px 12px;
+    transition: all var(--transition-smooth);
+    padding: var(--spacing-lg) var(--spacing-md);
 }
 
 .dropdown-content.visible {
@@ -94,12 +98,12 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    padding: 0 8px;
+    padding: 0 var(--spacing-sm);
 }
 
 /* Nur zwischen den Items eine gestrichelte Linie */
 .link-item + .link-item {
-    border-top: 1px dashed #d62828;
+    border-top: 1px dashed var(--accent-secondary);
 }
 
 .link-item a {
@@ -107,45 +111,45 @@
     align-items: center;
     justify-content: center;
     flex: 1;
-    padding: 12px 8px;
-    font-size: 1rem;
-    color: #d62828;
+    padding: var(--spacing-md) var(--spacing-sm);
+    font-size: var(--font-size-md);
+    color: var(--accent-secondary);
     text-decoration: none;
-    transition: all 0.2s ease;
+    transition: all var(--transition-normal);
 }
 
 .link-item:hover a {
-    font-weight: bold;
+    font-weight: var(--font-weight-bold);
     transform: translateX(5px);
-    color: #003049;
+    color: var(--accent-secondary);
 }
 
 .favorite-btn {
     background: none;
     border: none;
     cursor: pointer;
-    padding: 6px;
-    border-radius: 50%;
+    padding: var(--spacing-md);
+    border-radius: var(--radius-full);
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #999;
-    transition: all 0.2s ease;
+    color: var(--icon-muted);
+    transition: all var(--transition-normal);
     flex-shrink: 0;
 }
 
 .favorite-btn:hover {
-    background: rgba(252, 191, 73, 0.2);
-    color: #fcbf49;
+    background: var(--active-bg);
+    color: var(--accent);
     transform: scale(1.1);
 }
 
 .favorite-btn.is-favorite {
-    color: #fcbf49;
+    color: var(--accent);
 }
 
 .favorite-btn.is-favorite svg {
-    fill: #fcbf49;
+    fill: var(--accent);
 }
 
 /* Responsive */
@@ -163,11 +167,11 @@
     }
 
     .card-label {
-        font-size: 1.2rem;
+        font-size: var(--font-size-lg);
     }
 
     .link-item a {
         font-size: 0.85rem;
-        padding: 8px 4px;
+        padding: var(--spacing-sm) var(--spacing-xs);
     }
 }
