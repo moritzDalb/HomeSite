@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react';
 import { Sun, Moon, Coffee, Sunset } from 'lucide-react';
 import './GreetingWidget.css';
+import { t, setLocale, getLocale } from '../../i18n';
+import { defaults } from '../../config/defaults';
+import type { Locale as DefaultLocale } from '../../config/defaults';
 
 const GreetingWidget = () => {
     const [currentTime, setCurrentTime] = useState(new Date());
@@ -13,21 +16,37 @@ const GreetingWidget = () => {
         return () => clearInterval(timer);
     }, []);
 
+    // Setze initiale Locale basierend auf navigator (falls vorhanden) oder Default
+    useEffect(() => {
+        try {
+            const nav = (navigator && (navigator.language || (navigator as any).userLanguage)) || '';
+            const lang = nav.split('-')[0];
+            if (lang === 'de' || lang === 'en') {
+                setLocale(lang as DefaultLocale);
+            } else {
+                setLocale(defaults.defaultLocale);
+            }
+        } catch (e) {
+            setLocale(defaults.defaultLocale);
+        }
+    }, []);
+
     const getGreeting = () => {
         const hour = currentTime.getHours();
         if (hour >= 5 && hour < 12) {
-            return { text: 'Good morning', icon: <Coffee className="greeting-icon coffee" /> };
+            return { text: t('greeting_morning'), icon: <Coffee className="greeting-icon coffee" /> };
         } else if (hour >= 12 && hour < 17) {
-            return { text: 'Good afternoon', icon: <Sun className="greeting-icon sun" /> };
+            return { text: t('greeting_day'), icon: <Sun className="greeting-icon sun" /> };
         } else if (hour >= 17 && hour < 21) {
-            return { text: 'Good evening', icon: <Sunset className="greeting-icon sunset" /> };
+            return { text: t('greeting_evening'), icon: <Sunset className="greeting-icon sunset" /> };
         } else {
-            return { text: 'Good night', icon: <Moon className="greeting-icon moon" /> };
+            return { text: t('greeting_night'), icon: <Moon className="greeting-icon moon" /> };
         }
     };
 
     const formatDate = () => {
-        return currentTime.toLocaleDateString('en-US', {
+        const localeCode = defaults.localeMap[getLocale() as DefaultLocale] || defaults.localeMap[defaults.defaultLocale];
+        return currentTime.toLocaleDateString(localeCode, {
             weekday: 'long',
             day: 'numeric',
             month: 'long',
@@ -36,11 +55,8 @@ const GreetingWidget = () => {
     };
 
     const formatTime = () => {
-        return currentTime.toLocaleTimeString('en-US', {
-            hour: '2-digit',
-            minute: '2-digit',
-            second: '2-digit',
-        });
+        const localeCode = defaults.localeMap[getLocale() as DefaultLocale] || defaults.localeMap[defaults.defaultLocale];
+        return currentTime.toLocaleTimeString(localeCode, defaults.timeOptions as Intl.DateTimeFormatOptions);
     };
 
     const greeting = getGreeting();
@@ -49,7 +65,7 @@ const GreetingWidget = () => {
         <div className="greeting-widget">
             <div className="greeting-main">
                 {greeting.icon}
-                <h2 className="greeting-text">{greeting.text}!</h2>
+                <h2 className="greeting-text">{greeting.text}{t('exclamation')}</h2>
             </div>
             <div className="time-display">
                 <span className="time">{formatTime()}</span>
