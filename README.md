@@ -1,146 +1,81 @@
-# HomeSite - React + TypeScript Startseite
+# HomeSite
 
-Eine Single-Page-Anwendung als Browser-Startseite, gebaut mit React und TypeScript.
+Persönliche Browser-Startseite mit React, TypeScript und Vite. Zeigt konfigurierbare Link-Kategorien, unterstützt Dark/Light-Theme und bietet eine Suchfunktion.
 
-## Entwicklung
+## Features
 
-### Installation
+- 🔗 Link-Kategorien mit Favicons
+- ⭐ Favoriten-System
+- 🔍 Schnellsuche
+- 🌙 Dark/Light Theme-Toggle
+- 📱 Responsive Design
 
-```bash
-cd homesite-app
-npm install
-```
+## Installation
 
-### Entwicklungsserver starten
-
-```bash
-npm run dev
-```
-
-Die Anwendung läuft dann unter `http://localhost:5173/homesite/`
-
-### Produktions-Build erstellen
-
-```bash
-npm run build
-```
-
-Die Build-Dateien werden im `dist/` Ordner erstellt.
-
-## Tomcat Deployment
-
-### 1. Tomcat installieren
-
-Falls noch nicht geschehen, lade Apache Tomcat herunter von: https://tomcat.apache.org/download-10.cgi
-
-Empfohlen: Tomcat 10.x für Windows als ZIP-Archiv oder Windows Service Installer.
-
-### 2. Build für Tomcat kopieren
-
-Nach dem Build müssen die Dateien aus dem `dist/` Ordner in den Tomcat `webapps/homesite/` Ordner kopiert werden:
+**Voraussetzungen:** Node.js (18+), pnpm
 
 ```powershell
-# Beispiel (Pfade anpassen!)
-Copy-Item -Path ".\homesite-app\dist\*" -Destination "C:\Tomcat\webapps\homesite\" -Recurse -Force
+cd homesite-app
+pnpm install
+pnpm run dev
 ```
 
-### 3. Tomcat bei Windows-Start automatisch starten
+Die Anwendung läuft unter `http://localhost:5173/homesite/`
 
-#### Option A: Tomcat als Windows-Dienst installieren (Empfohlen)
+## Konfiguration
 
-1. **Mit dem Windows Service Installer:**
-   - Lade den "Windows Service Installer" von der Tomcat-Download-Seite herunter
-   - Führe die Installation aus - Tomcat wird automatisch als Windows-Dienst installiert
+### Links anpassen
 
-2. **Manuell mit service.bat:**
+Bearbeite `homesite-app/src/data/links.ts`, um eigene Links hinzuzufügen:
+
+```typescript
+export const linkCategories: LinkCategory[] = [
+    {
+        id: 'kategorie-id',
+        label: 'Kategorie-Name',
+        links: [
+            { name: 'Link-Name', url: 'https://example.com' },
+            { name: 'Weiterer Link', url: 'https://andere-seite.de' },
+        ],
+    },
+    // weitere Kategorien...
+];
+```
+
+Jeder Link besteht aus:
+- `name`: Anzeigename
+- `url`: Vollständige URL
+- `icon` (optional): Benutzerdefiniertes Icon
+
+## Deployment (Tomcat)
+
+1. **Build erstellen:**
    ```powershell
-   # Als Administrator ausführen!
-   cd C:\Tomcat\bin
-   .\service.bat install
+   cd homesite-app
+   pnpm run build
    ```
 
-3. **Dienst konfigurieren:**
-   - Öffne `services.msc` (Windows + R → `services.msc`)
-   - Finde "Apache Tomcat" in der Liste
-   - Rechtsklick → "Eigenschaften"
-   - Setze "Starttyp" auf "Automatisch"
-   - Klicke "OK"
-
-   Oder per PowerShell (als Administrator):
+2. **Mit Deploy-Skript (empfohlen):**
    ```powershell
-   Set-Service -Name "Tomcat10" -StartupType Automatic
-   Start-Service -Name "Tomcat10"
+   .\deploy-tomcat.ps1 -TomcatPath "C:\Pfad\zu\tomcat"
    ```
 
-#### Option B: Aufgabenplanung (Task Scheduler)
-
-1. Öffne den Aufgabenplaner (Windows + R → `taskschd.msc`)
-2. Klicke "Aufgabe erstellen..."
-3. Konfiguriere:
-   - **Allgemein:** 
-     - Name: "Tomcat Autostart"
-     - "Mit höchsten Privilegien ausführen" aktivieren
-   - **Trigger:** 
-     - "Bei Anmeldung" oder "Beim Systemstart"
-   - **Aktion:** 
-     - Programm: `C:\Tomcat\bin\startup.bat`
-   
-#### Option C: Startup-Ordner
-
-1. Drücke Windows + R und gib ein: `shell:startup`
-2. Erstelle eine Verknüpfung zu `C:\Tomcat\bin\startup.bat`
-
-### 4. Browser-Startseite setzen
-
-Nachdem Tomcat läuft, setze deine Browser-Startseite auf:
-
-```
-http://localhost:8080/homesite/
-```
+3. **Browser-Startseite setzen:**
+   ```
+   http://localhost:8080/homesite/
+   ```
 
 ## Projektstruktur
 
 ```
 homesite-app/
 ├── src/
-│   ├── components/
-│   │   ├── Header/
-│   │   │   ├── Header.tsx
-│   │   │   ├── Header.css
-│   │   │   └── index.ts
-│   │   └── LinkCard/
-│   │       ├── LinkCard.tsx
-│   │       ├── LinkCard.css
-│   │       └── index.ts
+│   ├── components/     # UI-Komponenten (Header, LinkCard, ThemeToggle, etc.)
+│   ├── context/        # React Context (Theme, Favorites)
 │   ├── data/
-│   │   └── links.ts        # Link-Kategorien (hier neue Links hinzufügen!)
-│   ├── pages/
-│   │   └── HomePage/
-│   │       ├── HomePage.tsx
-│   │       ├── HomePage.css
-│   │       └── index.ts
-│   ├── types/
-│   │   └── index.ts
-│   ├── App.tsx
-│   ├── main.tsx
-│   └── index.css
-├── index.html
-├── package.json
-├── tsconfig.json
-└── vite.config.ts
-```
-
-## Links hinzufügen/bearbeiten
-
-Bearbeite die Datei `src/data/links.ts`, um neue Kategorien oder Links hinzuzufügen:
-
-```typescript
-{
-  id: 'neue-kategorie';
-  label: 'Neue Kategorie';
-  links: [
-    { name: 'Link Name', url: 'https://example.com' },
-  ]
-}
+│   │   └── links.ts    # ⬅️ Hier eigene Links konfigurieren!
+│   ├── pages/          # Seitenkomponenten (HomePage, CodingPage)
+│   └── types/          # TypeScript-Typdefinitionen
+└── public/             # Statische Assets
 ```
 
