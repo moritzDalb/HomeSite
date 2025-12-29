@@ -15,7 +15,6 @@ Persönliche Browser-Startseite mit React, TypeScript und Vite. Zeigt konfigurie
 **Voraussetzungen:** Node.js (18+), pnpm
 
 ```powershell
-cd homesite-app
 pnpm install
 pnpm run dev
 ```
@@ -26,7 +25,7 @@ Die Anwendung läuft unter `http://localhost:5173/homesite/`
 
 ### Links anpassen
 
-Bearbeite `homesite-app/src/data/links.ts`, um eigene Links hinzuzufügen:
+Bearbeite `src/data/links.ts`, um eigene Links hinzuzufügen:
 
 ```typescript
 export const linkCategories: LinkCategory[] = [
@@ -51,7 +50,6 @@ Jeder Link besteht aus:
 
 1. **Build erstellen:**
    ```powershell
-   cd homesite-app
    pnpm run build
    ```
 
@@ -68,7 +66,7 @@ Jeder Link besteht aus:
 ## Projektstruktur
 
 ```
-homesite-app/
+HomeSite/
 ├── src/
 │   ├── components/     # UI-Komponenten (Header, LinkCard, ThemeToggle, etc.)
 │   ├── context/        # React Context (Theme, Favorites)
@@ -76,6 +74,9 @@ homesite-app/
 │   │   └── links.ts    # ⬅️ Hier eigene Links konfigurieren!
 │   ├── pages/          # Seitenkomponenten (HomePage, CodingPage)
 │   └── types/          # TypeScript-Typdefinitionen
-└── public/             # Statische Assets
+├── public/             # Statische Assets
+├── package.json
+├── vite.config.ts
+└── deploy-tomcat.ps1   # Deployment-Skript
 ```
 

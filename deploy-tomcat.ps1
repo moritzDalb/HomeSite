@@ -8,24 +8,17 @@ param(
 $ErrorActionPreference = "Stop"
 
 $ScriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
-$AppDir = Join-Path $ScriptDir "homesite-app"
-$DistDir = Join-Path $AppDir "dist"
+$DistDir = Join-Path $ScriptDir "dist"
 $WebAppsDir = Join-Path $TomcatPath "webapps"
 $TargetDir = Join-Path $WebAppsDir "homesite"
 
 Write-Host "=== HomeSite Deployment ===" -ForegroundColor Cyan
 Write-Host ""
 
-# Prüfen ob homesite-app Ordner existiert
-if (-not (Test-Path $AppDir)) {
-    Write-Host "Fehler: homesite-app Ordner nicht gefunden!" -ForegroundColor Red
-    exit 1
-}
-
 # Build erstellen
 Write-Host "1. Build erstellen..." -ForegroundColor Yellow
-Set-Location $AppDir
-npm run build
+Set-Location $ScriptDir
+pnpm run build
 
 if (-not (Test-Path $DistDir)) {
     Write-Host "Fehler: Build fehlgeschlagen - dist Ordner nicht gefunden!" -ForegroundColor Red
