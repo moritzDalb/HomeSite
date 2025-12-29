@@ -1,119 +1,122 @@
 .quick-stats {
-  display: flex;
-  gap: 20px;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-bottom: 30px;
-  animation: fadeIn 0.8s ease-out 0.3s backwards;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+    animation: fadeIn 0.8s ease-out 0.3s backwards;
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 .stat-item {
-  --stat-color: #fcbf49;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 12px 20px;
-  background: rgba(234, 226, 183, 0.1);
-  border-radius: 12px;
-  border: 1px solid rgba(252, 191, 73, 0.2);
-  transition: all 0.3s ease;
+    --stat-color: #fcbf49;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 20px;
+    background: rgba(234, 226, 183, 0.1);
+    border-radius: 12px;
+    border: 1px solid rgba(252, 191, 73, 0.2);
+    transition: all 0.3s ease;
 }
 
 .stat-item:hover {
-  background: rgba(234, 226, 183, 0.15);
-  transform: translateY(-2px);
-  border-color: var(--stat-color);
+    background: rgba(234, 226, 183, 0.15);
+    transform: translateY(-2px);
+    border-color: var(--stat-color);
 }
 
 .stat-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  background: rgba(0, 0, 0, 0.2);
-  border-radius: 10px;
-  color: var(--stat-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    color: var(--stat-color);
 }
 
 .stat-info {
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
 
 .stat-value {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: #eae2b7;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #eae2b7;
 }
 
 .stat-label {
-  font-size: 0.8rem;
-  color: rgba(234, 226, 183, 0.6);
-  text-transform: uppercase;
-  letter-spacing: 1px;
+    font-size: 0.8rem;
+    color: rgba(234, 226, 183, 0.6);
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .search-trigger {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 12px 20px;
-  background: rgba(252, 191, 73, 0.2);
-  border: 1px solid rgba(252, 191, 73, 0.4);
-  border-radius: 12px;
-  color: #eae2b7;
-  cursor: pointer;
-  font-size: 1rem;
-  transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 20px;
+    background: rgba(252, 191, 73, 0.2);
+    border: 1px solid rgba(252, 191, 73, 0.4);
+    border-radius: 12px;
+    color: #eae2b7;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.3s ease;
 }
 
 .search-trigger:hover {
-  background: rgba(252, 191, 73, 0.3);
-  border-color: #fcbf49;
-  transform: translateY(-2px);
+    background: rgba(252, 191, 73, 0.3);
+    border-color: #fcbf49;
+    transform: translateY(-2px);
 }
 
 .search-trigger kbd {
-  background: rgba(0, 0, 0, 0.3);
-  padding: 4px 8px;
-  border-radius: 6px;
-  font-size: 0.75rem;
-  font-family: inherit;
-  color: rgba(234, 226, 183, 0.8);
+    background: rgba(0, 0, 0, 0.3);
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-family: inherit;
+    color: rgba(234, 226, 183, 0.8);
 }
 
 /* Responsive */
 @media (max-width: 768px) {
-  .quick-stats {
-    gap: 12px;
-  }
+    .quick-stats {
+        gap: 12px;
+    }
 
-  .stat-item {
-    padding: 10px 16px;
-  }
+    .stat-item {
+        padding: 10px 16px;
+    }
 
-  .stat-icon {
-    width: 32px;
-    height: 32px;
-  }
+    .stat-icon {
+        width: 32px;
+        height: 32px;
+    }
 
-  .stat-value {
-    font-size: 1.2rem;
-  }
+    .stat-value {
+        font-size: 1.2rem;
+    }
 
-  .search-trigger span {
-    display: none;
-  }
+    .search-trigger span {
+        display: none;
+    }
 
-  .search-trigger kbd {
-    display: none;
-  }
+    .search-trigger kbd {
+        display: none;
+    }
 }
-

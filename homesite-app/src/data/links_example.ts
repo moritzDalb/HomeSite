@@ -1,22 +1,29 @@
 import type { LinkCategory } from '../types';
 
+/**
+ * Example links configuration file
+ *
+ * Copy this file to 'links.ts' and customize it with your personal links.
+ * The links.ts file is gitignored to keep your personal data private.
+ */
+
 export const linkCategories: LinkCategory[] = [
     {
         id: 'media',
         label: 'Media',
         links: [
-            { name: 'Twitch', url: 'https://www.twitch.tv/directory/following' },
+            { name: 'Twitch', url: 'https://www.twitch.tv' },
             { name: 'Youtube', url: 'https://www.youtube.com' },
-            { name: 'Netflix', url: 'https://www.netflix.com/browse' },
-            { name: 'NFL GamePass', url: 'https://www.nflgamepass.com/de' },
+            { name: 'Netflix', url: 'https://www.netflix.com' },
+            { name: 'Spotify', url: 'https://www.spotify.com' },
         ],
     },
     {
         id: 'shopping',
         label: 'Shopping',
         links: [
-            { name: 'Amazon', url: 'https://www.amazon.de/' },
-            { name: 'Zalando', url: 'https://www.zalando.de' },
+            { name: 'Amazon', url: 'https://www.amazon.de' },
+            { name: 'eBay', url: 'https://www.ebay.de' },
         ],
     },
     {
@@ -25,18 +32,13 @@ export const linkCategories: LinkCategory[] = [
         links: [
             { name: 'Google Maps', url: 'https://www.google.de/maps' },
             { name: 'OpenStreetMap', url: 'https://www.openstreetmap.org' },
-            {
-                name: 'Falk',
-                url: 'https://www.falk.de/routenplaner?data=eyJncCI6IjUxLjE2NTY5MSwxMC40NTE1MjYiLCJneiI6IjYuMDAifQ==',
-            },
         ],
     },
     {
         id: 'biking',
         label: 'Biken',
         links: [
-            { name: 'Outdooractive', url: 'https://www.outdooractive.com/de' },
-            { name: 'Komoot', url: 'https://www.komoot.de' },
+            { name: 'Komoot', url: 'https://www.komoot.com' },
             { name: 'Strava', url: 'https://www.strava.com' },
         ],
     },
@@ -44,16 +46,16 @@ export const linkCategories: LinkCategory[] = [
         id: 'games',
         label: 'Games',
         links: [
-            { name: 'Geoguessr', url: 'https://www.geoguessr.com' },
-            { name: 'Chess.com', url: 'https://www.chess.com/home' },
+            { name: 'Steam', url: 'https://store.steampowered.com' },
+            { name: 'Chess.com', url: 'https://www.chess.com' },
         ],
     },
     {
         id: 'cooking',
         label: 'Kochen',
         links: [
+            { name: 'Chefkoch', url: 'https://www.chefkoch.de' },
             { name: 'Kitchen Stories', url: 'https://www.kitchenstories.com/de' },
         ],
     },
 ];
-
