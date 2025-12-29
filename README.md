@@ -1,82 +1,81 @@
 # HomeSite
 
-Persönliche Browser-Startseite mit React, TypeScript und Vite. Zeigt konfigurierbare Link-Kategorien, unterstützt Dark/Light-Theme und bietet eine Suchfunktion.
+Personal browser start page built with React, TypeScript and Vite. Shows configurable link categories, supports Dark/Light theme and provides a search function.
 
 ## Features
 
-- 🔗 Link-Kategorien mit Favicons
-- ⭐ Favoriten-System
-- 🔍 Schnellsuche
-- 🌙 Dark/Light Theme-Toggle
-- 📱 Responsive Design
+- 🔗 Link categories with favicons
+- ⭐ Favorites system
+- 🔍 Quick search
+- 🌙 Dark/Light theme toggle
+- 📱 Responsive design
 
 ## Installation
 
-**Voraussetzungen:** Node.js (18+), pnpm
+**Prerequisites:** Node.js (18+), pnpm
 
 ```powershell
 pnpm install
 pnpm run dev
 ```
 
-Die Anwendung läuft unter `http://localhost:5173/homesite/`
+The app runs at `http://localhost:5173/homesite/`
 
-## Konfiguration
+## Configuration
 
-### Links anpassen
+### Adjust links
 
-Bearbeite `src/data/links.ts`, um eigene Links hinzuzufügen:
+Edit `src/data/links.ts` to add your own links:
 
 ```typescript
 export const linkCategories: LinkCategory[] = [
     {
-        id: 'kategorie-id',
-        label: 'Kategorie-Name',
+        id: 'category-id',
+        label: 'Category Name',
         links: [
-            { name: 'Link-Name', url: 'https://example.com' },
-            { name: 'Weiterer Link', url: 'https://andere-seite.de' },
+            { name: 'Link Name', url: 'https://example.com' },
+            { name: 'Another Link', url: 'https://andere-seite.de' },
         ],
     },
-    // weitere Kategorien...
+    // more categories...
 ];
 ```
 
-Jeder Link besteht aus:
-- `name`: Anzeigename
-- `url`: Vollständige URL
-- `icon` (optional): Benutzerdefiniertes Icon
+Each link consists of:
+- `name`: display name
+- `url`: full URL
+- `icon` (optional): custom icon
 
 ## Deployment (Tomcat)
 
-1. **Build erstellen:**
+1. **Create build:**
    ```powershell
    pnpm run build
    ```
 
-2. **Mit Deploy-Skript (empfohlen):**
+2. **Use deploy script (recommended):**
    ```powershell
-   .\deploy-tomcat.ps1 -TomcatPath "C:\Pfad\zu\tomcat"
+   .\deploy-tomcat.ps1 -TomcatPath "C:\Path\to\tomcat"
    ```
 
-3. **Browser-Startseite setzen:**
+3. **Set browser start page:**
    ```
    http://localhost:8080/homesite/
    ```
 
-## Projektstruktur
+## Project structure
 
 ```
 HomeSite/
 ├── src/
-│   ├── components/     # UI-Komponenten (Header, LinkCard, ThemeToggle, etc.)
-│   ├── context/        # React Context (Theme, Favorites)
+│   ├── components/     # UI components (Header, LinkCard, ThemeToggle, etc.)
+│   ├── context/        # React context (Theme, Favorites)
 │   ├── data/
-│   │   └── links.ts    # ⬅️ Hier eigene Links konfigurieren!
-│   ├── pages/          # Seitenkomponenten (HomePage, CodingPage)
-│   └── types/          # TypeScript-Typdefinitionen
-├── public/             # Statische Assets
+│   │   └── links.ts    # ⬅️ Configure your links here!
+│   ├── pages/          # Page components (HomePage, CodingPage)
+│   └── types/          # TypeScript type definitions
+├── public/             # Static assets
 ├── package.json
 ├── vite.config.ts
-└── deploy-tomcat.ps1   # Deployment-Skript
+└── deploy-tomcat.ps1   # Deployment script
 ```
-

@@ -16,18 +16,18 @@ const GreetingWidget = () => {
     const getGreeting = () => {
         const hour = currentTime.getHours();
         if (hour >= 5 && hour < 12) {
-            return { text: 'Guten Morgen', icon: <Coffee className="greeting-icon coffee" /> };
+            return { text: 'Good morning', icon: <Coffee className="greeting-icon coffee" /> };
         } else if (hour >= 12 && hour < 17) {
-            return { text: 'Guten Tag', icon: <Sun className="greeting-icon sun" /> };
+            return { text: 'Good afternoon', icon: <Sun className="greeting-icon sun" /> };
         } else if (hour >= 17 && hour < 21) {
-            return { text: 'Guten Abend', icon: <Sunset className="greeting-icon sunset" /> };
+            return { text: 'Good evening', icon: <Sunset className="greeting-icon sunset" /> };
         } else {
-            return { text: 'Gute Nacht', icon: <Moon className="greeting-icon moon" /> };
+            return { text: 'Good night', icon: <Moon className="greeting-icon moon" /> };
         }
     };
 
     const formatDate = () => {
-        return currentTime.toLocaleDateString('de-DE', {
+        return currentTime.toLocaleDateString('en-US', {
             weekday: 'long',
             day: 'numeric',
             month: 'long',
@@ -36,7 +36,7 @@ const GreetingWidget = () => {
     };
 
     const formatTime = () => {
-        return currentTime.toLocaleTimeString('de-DE', {
+        return currentTime.toLocaleTimeString('en-US', {
             hour: '2-digit',
             minute: '2-digit',
             second: '2-digit',

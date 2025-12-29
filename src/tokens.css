@@ -1,13 +1,13 @@
 /**
  * Design Tokens
  *
- * Zentralisierte Design-Variablen für konsistentes Styling.
- * Struktur: Primitive Tokens → Semantic Tokens
+ * Centralized design variables for consistent styling.
+ * Structure: Primitive Tokens → Semantic Tokens
  */
 
 :root {
     /* ========================================
-       PRIMITIVE TOKENS - Basis-Farbpalette
+       PRIMITIVE TOKENS - Base color palette
        ======================================== */
 
     /* Blues - Primary Brand Colors */

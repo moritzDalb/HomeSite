@@ -36,8 +36,8 @@ const LinkCard = ({ category }: LinkCardProps) => {
                             onClick={(e) => handleFavoriteClick(e, link.url)}
                             aria-label={
                                 isFavorite(link.url)
-                                    ? 'Aus Favoriten entfernen'
-                                    : 'Zu Favoriten hinzufügen'
+                                    ? 'Remove from favorites'
+                                    : 'Add to favorites'
                             }
                         >
                             <Star size={16} />

@@ -33,7 +33,7 @@ const SearchModal = ({ isOpen, onClose }: SearchModalProps) => {
             });
         });
 
-        // Favoriten zuerst sortieren
+        // Sort favorites first
         return matches.sort((a, b) => {
             const aFav = isFavorite(a.link.url);
             const bFav = isFavorite(b.link.url);
@@ -100,7 +100,7 @@ const SearchModal = ({ isOpen, onClose }: SearchModalProps) => {
                     <input
                         ref={inputRef}
                         type="text"
-                        placeholder="Links durchsuchen..."
+                        placeholder="Search links..."
                         value={query}
                         onChange={(e) => setQuery(e.target.value)}
                         className="search-input"
@@ -137,18 +137,18 @@ const SearchModal = ({ isOpen, onClose }: SearchModalProps) => {
                 )}
 
                 {query && results.length === 0 && (
-                    <div className="no-results">Keine Ergebnisse für "{query}"</div>
+                    <div className="no-results">No results for "{query}"</div>
                 )}
 
                 <div className="search-hints">
                     <span>
-                        <kbd>↑↓</kbd> Navigieren
+                        <kbd>↑↓</kbd> Navigate
                     </span>
                     <span>
-                        <kbd>Enter</kbd> Öffnen
+                        <kbd>Enter</kbd> Open
                     </span>
                     <span>
-                        <kbd>Esc</kbd> Schließen
+                        <kbd>Esc</kbd> Close
                     </span>
                 </div>
             </div>

@@ -10,7 +10,7 @@ export default defineConfig(({ command }) => ({
             },
         }),
     ],
-    // Basis-Pfad nur für Production-Build (Tomcat-Deployment)
+    // Base path only for production build (Tomcat deployment)
     base: command === 'build' ? '/homesite/' : '/',
     build: {
         outDir: 'dist',

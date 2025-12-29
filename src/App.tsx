@@ -3,7 +3,7 @@ import HomePage from './pages/HomePage';
 import CodingPage from './pages/CodingPage';
 
 function App() {
-    // Basename für Production (Tomcat) oder leer für Development
+    // Basename for production (Tomcat) or empty for development
     const basename = import.meta.env.BASE_URL;
 
     return (

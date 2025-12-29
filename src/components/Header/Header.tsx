@@ -18,7 +18,7 @@ const Header = ({ onSearchClick }: HeaderProps) => {
             <nav className="header-nav">
                 <div className="nav-links">
                     <Link to="/" className="nav-link">
-                        Startseite
+                        Home
                     </Link>
                     <Link to="/coding" className="nav-link">
                         Coding
@@ -27,7 +27,7 @@ const Header = ({ onSearchClick }: HeaderProps) => {
 
                 <div className="header-center">
                     <div className="mini-stats">
-                        <span className="mini-stat" title="Kategorien">
+                        <span className="mini-stat" title="Categories">
                             <FolderOpen size={16} />
                             {linkCategories.length}
                         </span>
@@ -35,7 +35,7 @@ const Header = ({ onSearchClick }: HeaderProps) => {
                             <Link2 size={16} />
                             {totalLinks}
                         </span>
-                        <span className="mini-stat" title="Favoriten">
+                        <span className="mini-stat" title="Favorites">
                             <Star size={16} />
                             {favorites.length}
                         </span>
@@ -47,10 +47,10 @@ const Header = ({ onSearchClick }: HeaderProps) => {
                         <button
                             className="search-button"
                             onClick={onSearchClick}
-                            title="Suche (Strg+K)"
+                            title="Search (Ctrl+K)"
                         >
                             <Search size={20} />
-                            <span className="search-label">Suche</span>
+                            <span className="search-label">Search</span>
                             <kbd>⌘K</kbd>
                         </button>
                     )}
