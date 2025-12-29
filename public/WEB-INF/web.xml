@@ -7,16 +7,15 @@
 
     <display-name>HomeSite</display-name>
 
-    <!-- Welcome to file -->
+    <!-- Welcome file -->
     <welcome-file-list>
         <welcome-file>index.html</welcome-file>
     </welcome-file-list>
 
-    <!-- 404 Error Page: Zeige eine dedizierte Fehlerseite an -->
+    <!-- 404 Error Page: Show a dedicated error page -->
     <error-page>
         <error-code>404</error-code>
         <location>/public/error/404.html</location>
     </error-page>
 
 </web-app>
-

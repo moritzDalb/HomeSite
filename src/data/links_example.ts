@@ -28,7 +28,7 @@ export const linkCategories: LinkCategory[] = [
     },
     {
         id: 'maps',
-        label: 'Karten',
+        label: 'Maps',
         links: [
             { name: 'Google Maps', url: 'https://www.google.de/maps' },
             { name: 'OpenStreetMap', url: 'https://www.openstreetmap.org' },
@@ -36,7 +36,7 @@ export const linkCategories: LinkCategory[] = [
     },
     {
         id: 'biking',
-        label: 'Biken',
+        label: 'Biking',
         links: [
             { name: 'Komoot', url: 'https://www.komoot.com' },
             { name: 'Strava', url: 'https://www.strava.com' },
@@ -52,7 +52,7 @@ export const linkCategories: LinkCategory[] = [
     },
     {
         id: 'cooking',
-        label: 'Kochen',
+        label: 'Cooking',
         links: [
             { name: 'Chefkoch', url: 'https://www.chefkoch.de' },
             { name: 'Kitchen Stories', url: 'https://www.kitchenstories.com/de' },

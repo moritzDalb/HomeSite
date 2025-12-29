@@ -1,5 +1,5 @@
-# HomeSite Deployment Script für Tomcat
-# Bitte den TOMCAT_PATH an Ihre Installation anpassen!
+# HomeSite deployment script for Tomcat
+# Please adjust TOMCAT_PATH to your installation!
 
 param(
     [string]$TomcatPath = "C:\bin\apache-tomcat-9.0.113"
@@ -15,46 +15,46 @@ $TargetDir = Join-Path $WebAppsDir "homesite"
 Write-Host "=== HomeSite Deployment ===" -ForegroundColor Cyan
 Write-Host ""
 
-# Build erstellen
-Write-Host "1. Build erstellen..." -ForegroundColor Yellow
+# Build project
+Write-Host "1. Building project..." -ForegroundColor Yellow
 Set-Location $ScriptDir
 pnpm run build
 
 if (-not (Test-Path $DistDir)) {
-    Write-Host "Fehler: Build fehlgeschlagen - dist Ordner nicht gefunden!" -ForegroundColor Red
+    Write-Host "Error: Build failed - dist folder not found!" -ForegroundColor Red
     exit 1
 }
 
-Write-Host "   Build erfolgreich!" -ForegroundColor Green
+Write-Host "   Build successful!" -ForegroundColor Green
 
-# Prüfen ob Tomcat-Pfad existiert
+# Verify Tomcat path exists
 if (-not (Test-Path $WebAppsDir)) {
     Write-Host ""
-    Write-Host "Fehler: Tomcat webapps Ordner nicht gefunden unter: $WebAppsDir" -ForegroundColor Red
-    Write-Host "Bitte den Pfad anpassen mit: .\deploy-tomcat.ps1 -TomcatPath 'C:\Ihr\Tomcat\Pfad'" -ForegroundColor Yellow
+    Write-Host "Error: Tomcat webapps folder not found at: $WebAppsDir" -ForegroundColor Red
+    Write-Host "Please adjust the path with: .\deploy-tomcat.ps1 -TomcatPath 'C:\Your\Tomcat\Path'" -ForegroundColor Yellow
     exit 1
 }
 
-# Alten Ordner löschen falls vorhanden
-Write-Host "2. Deployment nach Tomcat..." -ForegroundColor Yellow
+# Remove previous folder if present
+Write-Host "2. Deploying to Tomcat..." -ForegroundColor Yellow
 if (Test-Path $TargetDir) {
     Remove-Item -Path $TargetDir -Recurse -Force
-    Write-Host "   Alter homesite Ordner gelöscht" -ForegroundColor Gray
+    Write-Host "   Previous homesite folder removed" -ForegroundColor Gray
 }
 
-# Dateien kopieren
+# Copy files
 New-Item -ItemType Directory -Path $TargetDir -Force | Out-Null
 Copy-Item -Path "$DistDir\*" -Destination $TargetDir -Recurse -Force
 
-Write-Host "   Dateien kopiert nach: $TargetDir" -ForegroundColor Green
+Write-Host "   Files copied to: $TargetDir" -ForegroundColor Green
 
 Write-Host ""
-Write-Host "=== Deployment abgeschlossen! ===" -ForegroundColor Cyan
+Write-Host "=== Deployment complete! ===" -ForegroundColor Cyan
 Write-Host ""
-Write-Host "Die Anwendung ist verfügbar unter:" -ForegroundColor White
+Write-Host "The application is available at:" -ForegroundColor White
 Write-Host "  http://localhost:8080/homesite/" -ForegroundColor Green
 Write-Host ""
-Write-Host "Stellen Sie sicher, dass Tomcat läuft!" -ForegroundColor Yellow
+Write-Host "Ensure Tomcat is running!" -ForegroundColor Yellow
 
 Set-Location $ScriptDir
 
