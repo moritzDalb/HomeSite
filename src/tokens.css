@@ -163,6 +163,10 @@
     --text-muted: rgba(234, 226, 183, 0.6);
     --text-inverted: var(--color-blue-700);
 
+    /* Search Colors */
+    --search-text-primary: var(--color-blue-700);
+    --search-text-secondary: var(--color-blue-600);
+
     /* Card Colors */
     --card-bg: var(--color-cream-500);
     --card-text: var(--color-gray-900);
@@ -252,6 +256,10 @@
     --text-muted: var(--color-gray-600);
     --text-inverted: var(--color-cream-100);
 
+    /* Search Colors */
+    --search-text-primary: var(--color-blue-700);
+    --search-text-secondary: var(--color-blue-600);
+
     /* Card Colors */
     --card-bg: var(--color-cream-100);
     --card-text: var(--color-blue-700);
@@ -299,4 +307,3 @@
     /* Time color in light mode */
     --time-color: var(--color-red-600);
 }
-

@@ -8,12 +8,28 @@ import './HomePage.css';
 
 const HomePage = () => {
     const [isSearchOpen, setIsSearchOpen] = useState(false);
+    const [initialQuery, setInitialQuery] = useState<string | undefined>(undefined);
 
     useEffect(() => {
         const handleKeyDown = (e: KeyboardEvent) => {
             if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
                 e.preventDefault();
                 setIsSearchOpen(true);
+                setInitialQuery(undefined);
+            }
+
+            // If user types a printable character while not focusing an input, open search and pass that character
+            const active = document.activeElement;
+            const isTypingIntoInput = active && (active.tagName === 'INPUT' || active.tagName === 'TEXTAREA' || (active as HTMLElement).isContentEditable);
+            if (!isTypingIntoInput && !e.ctrlKey && !e.metaKey && !e.altKey) {
+                const key = e.key;
+                // Only consider single-character printable keys (letters, numbers, punctuation) but ignore ' ' (space)
+                if (key.length === 1 && key !== ' ') {
+                    // Open modal and prefill with the typed character
+                    setIsSearchOpen(true);
+                    setInitialQuery(key);
+                    e.preventDefault();
+                }
             }
         };
 
@@ -23,7 +39,7 @@ const HomePage = () => {
 
     return (
         <div className="home-page">
-            <Header onSearchClick={() => setIsSearchOpen(true)} />
+            <Header onSearchClick={() => { setIsSearchOpen(true); setInitialQuery(undefined); }} />
             <main className="main-content">
                 <GreetingWidget />
                 <div className="link-cards-container">
@@ -32,7 +48,7 @@ const HomePage = () => {
                     ))}
                 </div>
             </main>
-            <SearchModal isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
+            <SearchModal isOpen={isSearchOpen} onClose={() => { setIsSearchOpen(false); setInitialQuery(undefined); }} initialQuery={initialQuery} />
         </div>
     );
 };

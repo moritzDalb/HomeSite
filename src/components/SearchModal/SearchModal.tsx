@@ -8,9 +8,10 @@ import './SearchModal.css';
 interface SearchModalProps {
     isOpen: boolean;
     onClose: () => void;
+    initialQuery?: string;
 }
 
-const SearchModal = ({ isOpen, onClose }: SearchModalProps) => {
+const SearchModal = ({ isOpen, onClose, initialQuery }: SearchModalProps) => {
     const [query, setQuery] = useState('');
     const [selectedIndex, setSelectedIndex] = useState(0);
     const inputRef = useRef<HTMLInputElement>(null);
@@ -44,8 +45,22 @@ const SearchModal = ({ isOpen, onClose }: SearchModalProps) => {
     }, [query, isFavorite]);
 
     useEffect(() => {
-        if (isOpen && inputRef.current) {
-            inputRef.current.focus();
+        if (isOpen) {
+            // Prefill query when modal opens (e.g. first typed character) and focus the input
+            setQuery(initialQuery ?? '');
+            requestAnimationFrame(() => {
+                if (inputRef.current) {
+                    inputRef.current.focus();
+                    if (initialQuery) {
+                        const len = initialQuery.length;
+                        try {
+                            inputRef.current.setSelectionRange(len, len);
+                        } catch (e) {
+                            // ignore if not supported
+                        }
+                    }
+                }
+            });
         }
         if (!isOpen) {
             // Reset state when modal closes - intentional synchronization
@@ -53,7 +68,7 @@ const SearchModal = ({ isOpen, onClose }: SearchModalProps) => {
             setQuery('');
             setSelectedIndex(0);
         }
-    }, [isOpen]);
+    }, [isOpen, initialQuery]);
 
     useEffect(() => {
         // Reset selection when query changes - intentional synchronization

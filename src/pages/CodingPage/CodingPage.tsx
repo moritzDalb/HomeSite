@@ -39,13 +39,26 @@ const codingLinks: LinkCategory[] = [
 ];
 
 const CodingPage = () => {
+    // Open the search modal on initial page load so the search input is focused
     const [isSearchOpen, setIsSearchOpen] = useState(false);
+    const [initialQuery, setInitialQuery] = useState<string | undefined>(undefined);
 
     useEffect(() => {
         const handleKeyDown = (e: KeyboardEvent) => {
             if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
                 e.preventDefault();
                 setIsSearchOpen(true);
+            }
+
+            const active = document.activeElement;
+            const isTypingIntoInput = active && (active.tagName === 'INPUT' || active.tagName === 'TEXTAREA' || (active as HTMLElement).isContentEditable);
+            if (!isTypingIntoInput && !e.ctrlKey && !e.metaKey && !e.altKey) {
+                const key = e.key;
+                if (key.length === 1 && key !== ' ') {
+                    setIsSearchOpen(true);
+                    setInitialQuery(key);
+                    e.preventDefault();
+                }
             }
         };
 
@@ -64,7 +77,7 @@ const CodingPage = () => {
                     ))}
                 </div>
             </main>
-            <SearchModal isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
+            <SearchModal isOpen={isSearchOpen} onClose={() => { setIsSearchOpen(false); setInitialQuery(undefined); }} initialQuery={initialQuery} />
         </div>
     );
 };
