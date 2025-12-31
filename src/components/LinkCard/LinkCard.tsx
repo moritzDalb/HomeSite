@@ -6,9 +6,11 @@ import './LinkCard.css';
 
 interface LinkCardProps {
     category: LinkCategory;
+    animationDelay?: string; // z.B. '0.16s'
+    disableAnimation?: boolean; // wenn true, wird animation per inline-style ausgeschaltet
 }
 
-const LinkCard = ({ category }: LinkCardProps) => {
+const LinkCard = ({ category, animationDelay, disableAnimation }: LinkCardProps) => {
     const [isHovered, setIsHovered] = useState(false);
     const { isFavorite, toggleFavorite } = useFavorites();
 
@@ -18,11 +20,22 @@ const LinkCard = ({ category }: LinkCardProps) => {
         toggleFavorite(url);
     };
 
+    // Setze die Verzögerung als CSS-Variable, damit die CSS-Definition (animation + fill-mode) erhalten bleibt.
+    const style: React.CSSProperties = {};
+    if (disableAnimation) {
+        // komplett ausschalten
+        style.animation = 'none';
+    } else if (animationDelay) {
+        // CSS-Variable verwenden: --animation-delay
+        (style as any)['--animation-delay'] = animationDelay;
+    }
+
     return (
         <div
             className={`link-card ${isHovered ? 'hovered' : ''}`}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
+            style={style}
         >
             <h2 className={`card-label ${isHovered ? 'hidden' : ''}`}>{category.label}</h2>
             <div className={`dropdown-content ${isHovered ? 'visible' : ''}`}>

@@ -1,0 +1,109 @@
+.weather-widget{
+    background: var(--widget-bg);
+    border: 1px solid var(--border-subtle);
+    backdrop-filter: blur(10px);
+    padding: var(--spacing-md);
+    border-radius: var(--radius-2xl);
+    color: var(--text-primary);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 160px;
+    max-width: 220px;
+    padding-left: var(--spacing-xl);
+    padding-right: var(--spacing-xl);
+}
+
+.weather-panel{
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.weather-left,
+.weather-right{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.weather-left{
+    align-items: center;
+}
+
+.weather-right{
+    align-items: flex-start;
+    padding-left: 6px;
+}
+
+.weather-icon{
+    font-size: 36px;
+    line-height: 1;
+}
+
+.weather-temp{
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.weather-cond{
+    font-size: 12px;
+    opacity: 0.9;
+}
+
+.weather-error-view{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:var(--spacing-md);
+    padding: var(--spacing-md);
+}
+
+.weather-error-message{
+    color: var(--error-color, #ff8a8a);
+    font-size: 0.95rem;
+    text-align:center;
+}
+
+.weather-actions, .weather-error-actions{
+    display:flex;
+    gap:8px;
+    align-items:center;
+    justify-content:center;
+}
+
+.weather-btn{
+    background: none;
+    border: 1px solid rgba(255,255,255,0.06);
+    color: var(--text-primary);
+    padding: 6px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.weather-hint{
+    font-size: 12px;
+    opacity: 0.85;
+}
+
+.weather-location{
+    font-weight: 600;
+    font-size: 12px;
+    margin-top: 6px;
+    text-align: center;
+    opacity: 0.95;
+}
+
+.weather-error{
+    color: #ff8a8a;
+}
+
+@media (max-width: 768px) {
+    .weather-widget{
+        min-width: 140px;
+        max-width: 180px;
+        padding: var(--spacing-sm);
+    }
+    .weather-icon{ font-size:28px; }
+}

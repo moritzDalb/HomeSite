@@ -4,13 +4,14 @@
     top: 0;
     left: 0;
     right: 0;
-    height: 70px;
+    height: var(--header-height);
+    box-sizing: border-box;
     border-style: solid;
     border-color: var(--border-color);
     border-width: 0 0 2px 0;
     display: flex;
     align-items: center;
-    padding: 0 var(--spacing-2xl);
+    padding: 0 var(--page-padding);
     z-index: var(--z-fixed);
     box-shadow: var(--shadow-lg);
     backdrop-filter: blur(10px);
@@ -144,7 +145,6 @@
 
 @media (max-width: 768px) {
     .header {
-        height: 60px;
         padding: 0 var(--spacing-lg);
     }
 

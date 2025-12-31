@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef, useMemo } from 'react';
 import Header from '../../components/Header';
 import LinkCard from '../../components/LinkCard';
-import GreetingWidget from '../../components/GreetingWidget';
+import WidgetsArea from '../../components/WidgetsArea';
 import SearchModal from '../../components/SearchModal';
 import type { LinkCategory } from '../../types';
 import '../HomePage/HomePage.css';
@@ -42,6 +42,8 @@ const CodingPage = () => {
     // Open the search modal on initial page load so the search input is focused
     const [isSearchOpen, setIsSearchOpen] = useState(false);
     const [initialQuery, setInitialQuery] = useState<string | undefined>(undefined);
+    const initialMountRef = useRef(true);
+    const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
 
     useEffect(() => {
         const handleKeyDown = (e: KeyboardEvent) => {
@@ -66,15 +68,39 @@ const CodingPage = () => {
         return () => window.removeEventListener('keydown', handleKeyDown);
     }, []);
 
+    useEffect(() => {
+        const id = setTimeout(() => { initialMountRef.current = false; }, 50);
+        return () => clearTimeout(id);
+    }, []);
+
+    // prefers-reduced-motion per JS (optional, CSS ist primär)
+    useEffect(() => {
+        const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+        setPrefersReducedMotion(mq.matches);
+        const handler = (e: MediaQueryListEvent) => setPrefersReducedMotion(e.matches);
+        if (mq.addEventListener) mq.addEventListener('change', handler);
+        else mq.addListener(handler);
+        return () => {
+            if (mq.removeEventListener) mq.removeEventListener('change', handler);
+            else mq.removeListener(handler);
+        };
+    }, []);
+
+    const baseDelay = 0.08;
+    const maxDelay = 0.9;
+
+    const delays = useMemo(() => codingLinks.map((_, i) => `${Math.min(i * baseDelay, maxDelay)}s`), []);
+
     return (
         <div className="home-page">
             <Header onSearchClick={() => setIsSearchOpen(true)} />
             <main className="main-content">
-                <GreetingWidget />
+                <WidgetsArea page="coding" />
                 <div className="link-cards-container">
-                    {codingLinks.map((category) => (
-                        <LinkCard key={category.id} category={category} />
-                    ))}
+                    {codingLinks.map((category, index) => {
+                        const delay = initialMountRef.current ? delays[index] : undefined;
+                        return <LinkCard key={category.id} category={category} animationDelay={delay} disableAnimation={prefersReducedMotion} />;
+                    })}
                 </div>
             </main>
             <SearchModal isOpen={isSearchOpen} onClose={() => { setIsSearchOpen(false); setInitialQuery(undefined); }} initialQuery={initialQuery} />

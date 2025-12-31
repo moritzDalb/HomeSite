@@ -1,14 +1,17 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef, useMemo } from 'react';
 import Header from '../../components/Header';
 import LinkCard from '../../components/LinkCard';
-import GreetingWidget from '../../components/GreetingWidget';
 import SearchModal from '../../components/SearchModal';
+import WidgetsArea from '../../components/WidgetsArea';
 import { linkCategories } from '../../data/links';
 import './HomePage.css';
 
 const HomePage = () => {
     const [isSearchOpen, setIsSearchOpen] = useState(false);
     const [initialQuery, setInitialQuery] = useState<string | undefined>(undefined);
+    // Flag, damit Stagger-Animation nur beim initialen Mount abgespielt wird
+    const initialMountRef = useRef(true);
+    const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
 
     useEffect(() => {
         const handleKeyDown = (e: KeyboardEvent) => {
@@ -37,15 +40,45 @@ const HomePage = () => {
         return () => window.removeEventListener('keydown', handleKeyDown);
     }, []);
 
+    useEffect(() => {
+        // Nach dem ersten Render auf false setzen, damit bei späteren Updates keine Delays mehr gesetzt werden
+        const id = setTimeout(() => { initialMountRef.current = false; }, 50);
+        return () => clearTimeout(id);
+    }, []);
+
+    // prefers-reduced-motion per JS (optional, CSS ist primär) -> setze disableAnimation wenn der User es bevorzugt
+    useEffect(() => {
+        const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+        setPrefersReducedMotion(mq.matches);
+        const handler = (e: MediaQueryListEvent) => setPrefersReducedMotion(e.matches);
+        // older browsers use addListener
+        if (mq.addEventListener) mq.addEventListener('change', handler);
+        else mq.addListener(handler);
+        return () => {
+            if (mq.removeEventListener) mq.removeEventListener('change', handler);
+            else mq.removeListener(handler);
+        };
+    }, []);
+
+    const baseDelay = 0.08; // Sekunden pro Karte
+    const maxDelay = 0.9; // kappen, falls viele Karten vorhanden sind
+
+    const delays = useMemo(() => {
+        return linkCategories.map((_, i) => `${Math.min(i * baseDelay, maxDelay)}s`);
+    }, []);
+
     return (
         <div className="home-page">
             <Header onSearchClick={() => { setIsSearchOpen(true); setInitialQuery(undefined); }} />
             <main className="main-content">
-                <GreetingWidget />
+                <WidgetsArea page="home" />
                 <div className="link-cards-container">
-                    {linkCategories.map((category) => (
-                        <LinkCard key={category.id} category={category} />
-                    ))}
+                    {linkCategories.map((category, index) => {
+                        const delay = initialMountRef.current ? delays[index] : undefined;
+                        return (
+                            <LinkCard key={category.id} category={category} animationDelay={delay} disableAnimation={prefersReducedMotion} />
+                        );
+                    })}
                 </div>
             </main>
             <SearchModal isOpen={isSearchOpen} onClose={() => { setIsSearchOpen(false); setInitialQuery(undefined); }} initialQuery={initialQuery} />

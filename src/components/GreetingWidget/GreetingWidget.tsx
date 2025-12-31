@@ -46,12 +46,17 @@ const GreetingWidget = () => {
 
     const formatDate = () => {
         const localeCode = defaults.localeMap[getLocale() as DefaultLocale] || defaults.localeMap[defaults.defaultLocale];
+        // Nur Tag, Monat, Jahr (ohne Wochentag) für die Anzeige in einer Zeile
         return currentTime.toLocaleDateString(localeCode, {
-            weekday: 'long',
             day: 'numeric',
             month: 'long',
             year: 'numeric',
         });
+    };
+
+    const formatWeekday = () => {
+        const localeCode = defaults.localeMap[getLocale() as DefaultLocale] || defaults.localeMap[defaults.defaultLocale];
+        return currentTime.toLocaleDateString(localeCode, { weekday: 'long' });
     };
 
     const formatTime = () => {
@@ -69,7 +74,10 @@ const GreetingWidget = () => {
             </div>
             <div className="time-display">
                 <span className="time">{formatTime()}</span>
-                <span className="date">{formatDate()}</span>
+                <div className="date-block">
+                    <span className="weekday">{formatWeekday()}</span>
+                    <span className="date">{formatDate()}</span>
+                </div>
             </div>
         </div>
     );

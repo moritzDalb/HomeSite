@@ -21,7 +21,8 @@ html,
 body {
     margin: 0;
     min-width: 320px;
-    height: 100vh;
+    min-height: 100%;
+    height: auto;
     background: var(--bg-primary);
     color: var(--text-primary);
     overflow: hidden;
@@ -31,6 +32,138 @@ body {
 }
 
 #root {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    width: 100%;
+    --page-padding: clamp(12px, 2.5vw, 32px);
+    --card-size: clamp(160px, 16vw, 320px);
+    --header-height: 70px;
+    --content-offset: 0px;
+    --content-max-width: 1280px;
+}
+
+@media (max-width: 768px) {
+    #root {
+        --header-height: 60px;
+    }
+}
+
+.page-viewport {
     height: 100vh;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
     overflow: hidden;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.page-container {
+    width: 100%;
+    max-width: var(--content-max-width);
+    margin: 0 auto;
+    padding-left: var(--page-padding, 2rem);
+    padding-right: var(--page-padding, 2rem);
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    height: 100%;
+}
+
+.page-main {
+    margin-top: calc(var(--header-height) + var(--content-offset));
+    height: calc(100vh - (var(--header-height) + var(--content-offset)));
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-gutter: stable both-edges;
+    min-height: 0;
+}
+
+.page-main .main-content {
+    height: 100%;
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+.page-viewport--home::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--bg-gradient);
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+    z-index: -1;
+    pointer-events: none;
+    will-change: background-position;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0 50%; }
+}
+
+:root {
+    --scrollbar-width: 12px;
+}
+
+/* Webkit-based browsers */
+.page-main::-webkit-scrollbar {
+    width: var(--scrollbar-width);
+}
+.page-main::-webkit-scrollbar-thumb {
+    background: rgba(0,0,0,0.15);
+    border-radius: 8px;
+}
+.page-main::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none;
+        transition: none;
+        scroll-behavior: auto;
+    }
+}
+
+.skip-link {
+    position: absolute;
+    left: -9999px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+.skip-link:focus {
+    position: fixed;
+    left: 12px;
+    top: 12px;
+    width: auto;
+    height: auto;
+    padding: 8px 12px;
+    background: var(--card-bg);
+    color: var(--text-primary);
+    border-radius: 6px;
+    box-shadow: var(--shadow-md);
+    z-index: var(--z-modal);
+    text-decoration: none;
+}
+
+.page-viewport--coding::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--bg-secondary);
+    z-index: -1;
+    pointer-events: none;
 }

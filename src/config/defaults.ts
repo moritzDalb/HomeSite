@@ -24,6 +24,11 @@ export const defaults = {
         second: '2-digit',
     } as Intl.DateTimeFormatOptions,
 
+    // Default location name for weather widget (coordinates are resolved via geocoding API)
+    defaultWeatherLocation: {
+        name: 'Berlebeck',
+    },
+
     // ========================================
     // Search engine configuration
     // Define available search engines (suggest endpoint + search URL template)
