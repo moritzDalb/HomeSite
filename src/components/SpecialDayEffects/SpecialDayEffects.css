@@ -1,0 +1,102 @@
+.sde-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none; /* allow clicks through to widgets */
+  z-index: 50;
+}
+
+.sde-container {
+  position: absolute;
+  inset: 0;
+}
+
+/* small helper to visually debug active area (dev only) */
+.sde-debug-boundary {
+  pointer-events: none;
+  border: 1px dashed rgba(255,255,255,0.04);
+}
+
+/* Effect toggle styling (re-use theme-toggle visuals) */
+.sde-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: var(--spacing-xs);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sde-toggle .toggle-track {
+  position: relative;
+  width: 60px; /* match theme toggle */
+  height: 30px; /* match theme toggle */
+  background: var(--toggle-track-dark);
+  border-radius: var(--radius-3xl);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 var(--spacing-sm);
+  transition: all var(--transition-slow);
+  box-shadow: var(--shadow-inset);
+}
+
+/* Default icon color on dark track: use dark blue when effects are OFF */
+.sde-toggle .toggle-track svg {
+  /* position the icon absolutely so it can move left/right */
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 8px; /* OFF state: icon on the right */
+  left: auto;
+  color: var(--color-sky-300); /* RIGHT/OFF: light blue */
+  z-index: 2; /* above thumb */
+  opacity: 0.95;
+  transition: left 220ms ease, right 220ms ease, color var(--transition-fast);
+}
+
+/* ON state: track becomes light gradient, icon should be dark blue on the left */
+.sde-toggle .toggle-track.light {
+  background: var(--toggle-track-light);
+}
+
+.sde-toggle .toggle-track.light svg {
+  left: 8px; /* ON state: icon on the left */
+  right: auto;
+  color: var(--color-blue-900); /* LEFT/ON: dark blue */
+}
+
+.sde-toggle .toggle-track.light .toggle-thumb {
+  left: calc(100% - 27px); /* match theme's thumb position */
+  /* keep thumb accent color for consistency */
+  background: var(--accent);
+  z-index: 1;
+}
+
+.sde-toggle .toggle-thumb {
+  position: absolute;
+  width: 24px; /* match theme thumb size */
+  height: 24px;
+  background: var(--accent);
+  border-radius: var(--radius-full);
+  left: 3px;
+  transition: all var(--transition-bounce);
+  box-shadow: 0 2px 6px var(--shadow-thumb);
+  z-index: 1;
+}
+
+.sde-toggle:hover .toggle-track {
+  box-shadow:
+    var(--shadow-inset),
+    var(--shadow-glow-accent);
+}
+
+.sde-toggle:focus {
+  outline: none;
+}
+
+.sde-toggle:focus-visible .toggle-track {
+  box-shadow:
+    var(--shadow-inset),
+    0 0 0 3px var(--focus-accent);
+}

@@ -4,6 +4,7 @@ import ThemeToggle from '../ThemeToggle';
 import { useFavorites } from '../../context/FavoritesContext';
 import { linkCategories } from '../../data/links';
 import './Header.css';
+import EffectToggle from '../SpecialDayEffects/EffectToggle';
 
 interface HeaderProps {
     onSearchClick?: () => void;
@@ -55,6 +56,7 @@ const Header = ({ onSearchClick }: HeaderProps) => {
                         </button>
                     )}
                     <ThemeToggle />
+                    <EffectToggle />
                 </div>
             </nav>
         </header>

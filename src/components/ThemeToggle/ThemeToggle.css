@@ -43,17 +43,17 @@
 }
 
 .sun-icon {
-    color: var(--icon-sun);
+    color: var(--color-blue-900);
     z-index: 1;
-    opacity: var(--opacity-muted);
-    transition: opacity var(--transition-slow);
+    opacity: 0;
+    transition: opacity var(--transition-slow), color var(--transition-fast);
 }
 
 .moon-icon {
     color: var(--icon-moon);
     z-index: 1;
     opacity: 1;
-    transition: opacity var(--transition-slow);
+    transition: opacity var(--transition-slow), color var(--transition-fast);
 }
 
 .toggle-track.light .sun-icon {
@@ -61,7 +61,7 @@
 }
 
 .toggle-track.light .moon-icon {
-    opacity: var(--opacity-muted);
+    opacity: 0;
 }
 
 .theme-toggle:hover .toggle-track {

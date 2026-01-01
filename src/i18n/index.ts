@@ -7,6 +7,8 @@ export const translations: Record<Locale, Record<string, string>> = {
         greeting_evening: 'Guten Abend',
         greeting_night: 'Gute Nacht',
         exclamation: '!',
+        effects_on: 'Effekte: Ein',
+        effects_off: 'Effekte: Aus',
     },
     en: {
         greeting_morning: 'Good morning',
@@ -14,6 +16,8 @@ export const translations: Record<Locale, Record<string, string>> = {
         greeting_evening: 'Good evening',
         greeting_night: 'Good night',
         exclamation: '!',
+        effects_on: 'Effects: On',
+        effects_off: 'Effects: Off',
     },
 };
 
@@ -28,4 +32,3 @@ export const getLocale = () => currentLocale;
 export const t = (key: string) => {
     return translations[currentLocale][key] ?? key;
 };
-

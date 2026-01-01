@@ -1,0 +1,9 @@
+/* ambient gradient to complement bursts */
+.sde-newyear-ambient {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 54;
+  background: radial-gradient(circle at 20% 20%, rgba(255,200,100,0.06), transparent 10%), radial-gradient(circle at 80% 80%, rgba(100,200,255,0.04), transparent 12%);
+}
+
