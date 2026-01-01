@@ -1,0 +1,8 @@
+.placeholder-effect{position:fixed;inset:0;pointer-events:none;z-index:55;display:flex;align-items:flex-end;justify-content:center;padding:2rem}
+.placeholder-label{background:rgba(0,0,0,0.5);color:white;padding:6px 10px;border-radius:6px;font-size:12px}
+/* simple color variants for visual distinction */
+.placeholder-valentine .placeholder-label{background:linear-gradient(90deg,#ff7aa2,#ff3b6b)}
+.placeholder-halloween .placeholder-label{background:linear-gradient(90deg,#ffb347,#ff5e62)}
+.placeholder-st_patrick .placeholder-label{background:linear-gradient(90deg,#65c26b,#2b8a3e)}
+.placeholder-pride .placeholder-label{background:linear-gradient(90deg,#e40303,#ff8c00,#ffed00,#008026,#004dff,#750787)}
+

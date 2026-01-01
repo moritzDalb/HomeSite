@@ -6,6 +6,28 @@ import { useSpecialDayEffectsContext } from '../../context/SpecialDayEffectsCont
 const PLUGIN_LOADERS: Record<string, () => Promise<{ default: React.ComponentType<any> }>> = {
     christmas: () => import('./effects/ChristmasEffect'),
     newyear: () => import('./effects/NewYearEffect'),
+    valentine: () => import('./effects/ValentineEffect'),
+    easter: () => import('./effects/EasterEffect'),
+    good_friday: () => import('./effects/GoodFridayEffect'),
+    easter_monday: () => import('./effects/EasterMondayEffect'),
+    carnival: () => import('./effects/CarnivalEffect'),
+    mothers_day: () => import('./effects/MothersDayEffect'),
+    fathers_day: () => import('./effects/FathersDayEffect'),
+    st_patrick: () => import('./effects/StPatrickEffect'),
+    earth_day: () => import('./effects/EarthDayEffect'),
+    halloween: () => import('./effects/HalloweenEffect'),
+    thanksgiving_us: () => import('./effects/ThanksgivingEffect'),
+    labor_day: () => import('./effects/LaborDayEffect'),
+    st_nicholas: () => import('./effects/StNicholasEffect'),
+    solstice_winter: () => import('./effects/SolsticeWinterEffect'),
+    solstice_summer: () => import('./effects/SolsticeSummerEffect'),
+    black_friday: () => import('./effects/BlackFridayEffect'),
+    singles_day: () => import('./effects/SinglesDayEffect'),
+    hanukkah: () => import('./effects/HanukkahEffect'),
+    ramadan_eid: () => import('./effects/RamadanEidEffect'),
+    pride: () => import('./effects/PrideEffect'),
+    oktoberfest: () => import('./effects/OktoberfestEffect'),
+    pi_day: () => import('./effects/PiDayEffect'),
 };
 
 const SpecialDayEffectsContainer: React.FC = () => {
