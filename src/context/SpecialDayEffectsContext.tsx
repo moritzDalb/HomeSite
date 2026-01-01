@@ -33,6 +33,9 @@ export function SpecialDayEffectsProvider({ children }: { children: React.ReactN
     }, [today]);
 
     const isEnabledForPlugin = useCallback((pluginId: string) => {
+        // Currently global userMode controls all plugins. Keep pluginId referenced
+        // to allow per-plugin logic later and to avoid unused-parameter TS6133.
+        void pluginId;
         return userMode === 'on';
     }, [userMode]);
 

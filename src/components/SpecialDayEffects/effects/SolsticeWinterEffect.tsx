@@ -1,6 +1,5 @@
 import React from 'react';
 import ParticleEffect from './ParticleEffect';
-import { t } from '../../../i18n';
 
 const SolsticeWinterEffect: React.FC = () => (
     <ParticleEffect
